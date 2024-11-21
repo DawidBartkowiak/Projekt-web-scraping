@@ -6,9 +6,15 @@ URL = 'https://it.pracuj.pl/praca/wronki;wp/it%20-%20rozw%C3%B3j%20oprogramowani
 page = get(URL)
 bs = BeautifulSoup(page.content, features='html.parser')
 
-for offer in bs.find_all('div', class_='tiles_cobg3mp'):
+for offer in bs.find_all('div',{"data-test": "default-offer"}):
     
-    footer = offer.find('a', class_='tiles_o1859gd9').get_text().strip()
-    title = offer.find('h4', class_='tiles_r11dm8ju')
-    print(footer,title)
+    footer = offer.find('h2', {"data-test": "offer-title"}).get_text().strip()
+    location = offer.find('h4', {"data-test": "text-region"}).get_text().strip()
+    salary = offer.find('span',{"data-test": "offer-salary"})
+    if salary is not None:
+        salary = salary.get_text().strip()
+    else:
+        salary = "Brak informacji o wynagrodzeniu"
+    link = offer.find('a', href = True).get('href')
+    print(footer,salary,location,link)
     
