@@ -1,5 +1,4 @@
-from bs4 import BeautifulSoup
-from requests import get
+
 from url_helper import extract_offers_from_url
 
 def ppl_title(offer):
