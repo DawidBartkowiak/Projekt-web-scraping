@@ -1,7 +1,9 @@
 from extract import extract_data
 from urls import urls
+from sys import argv
 
 # Lista URL-i
+
 
 def url_change():
     for url in urls():
@@ -10,4 +12,5 @@ def url_change():
         for item in data:
             print(item)
 
-url_change()            
+
+url_change()
