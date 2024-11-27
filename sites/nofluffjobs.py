@@ -27,7 +27,7 @@ def nfj_link(offer):
 def search_nofluffjobs(url):
 
     nofluffjobs = extract_offers_from_url(url)
-
+    job_offers_nfj = []
     for offer in nofluffjobs:
         title = nfj_title(offer)
         location = nfj_location(offer)
@@ -37,4 +37,8 @@ def search_nofluffjobs(url):
         else:
             salary = "No salary information"
         link = nfj_link(offer)
-        print(title, location, salary, f"https://nofluffjobs.com{link}")
+        job_offers_nfj.append(
+            [title, location, salary, f"https://nofluffjobs.com{link}"]
+        )
+
+    return job_offers_nfj
