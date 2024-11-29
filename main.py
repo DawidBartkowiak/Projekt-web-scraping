@@ -12,7 +12,7 @@ def create_dataframe():
         all_data.extend(data)
 
     df = pd.DataFrame(all_data, columns=["Title", "Location", "Salary", "Link"])
-    return df
+    return df.drop_duplicates(subset="Link")
 
 
 def save_to_sqlite(df, db_name="job_offers.db"):
@@ -23,23 +23,31 @@ def save_to_sqlite(df, db_name="job_offers.db"):
     cursor.execute(
         """
         CREATE TABLE IF NOT EXISTS job_offers (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id INTEGER PRIMARY KEY ,
             title TEXT,
             location TEXT,
             salary TEXT,
-            link TEXT UNIQUE
+            link MARKDOWN UNIQUE
         )
     """
     )
+
+    cursor.execute("SELECT MAX(id) FROM job_offers")
+    max_id = cursor.fetchone()[0]
+    if max_id is None:
+        max_id = 0
+
+    # Dodaj kolumnę id do DataFrame
+    df["id"] = range(max_id + 1, max_id + 1 + len(df))
 
     # Insert data into the table
     for _, row in df.iterrows():
         cursor.execute(
             """
-            INSERT OR IGNORE INTO job_offers (title, location, salary, link)
-            VALUES (?, ?, ?, ?)
+            INSERT OR IGNORE INTO job_offers (id,title, location, salary, link)
+            VALUES (?, ?, ?, ?, ?)
         """,
-            (row["Title"], row["Location"], row["Salary"], row["Link"]),
+            (row["id"], row["Title"], row["Location"], row["Salary"], row["Link"]),
         )
 
     conn.commit()
