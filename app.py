@@ -6,22 +6,31 @@ app = Flask(__name__)
 
 
 def get_data_from_sqlite(db_name="job_offers.db"):
+    # Connects to the SQLite database
     conn = sqlite3.connect(db_name)
+    # Executes a SQL query to retrieve all data from the 'job_offers' table and loads it into a DataFrame
     df = pd.read_sql_query("SELECT * FROM job_offers", conn)
+    # Closes the database connection
     conn.close()
+    # Returns the DataFrame containing the job offers
     return df
 
 
 def format_table_data(df):
+    # Replaces newline characters with <br> tags in all string cells
     df = df.applymap(lambda x: x.replace("\n", "<br>") if isinstance(x, str) else x)
+    # Converts the 'link' column to clickable HTML links
     df["link"] = df["link"].apply(lambda x: f'<a href="{x}" target="_blank">{x}</a>')
     return df
 
 
 @app.route("/")
 def index():
+    # Retrieves data from the SQLite database
     df = get_data_from_sqlite()
+    # Formats the DataFrame for HTML display
     df2 = format_table_data(df)
+    # Renders the 'index.html' template with the formatted table
     return render_template(
         "index.html",
         tables=df2.to_html(classes="data", header="true", index=False, escape=False),
@@ -29,4 +38,5 @@ def index():
 
 
 if __name__ == "__main__":
+    # Runs the Flask application in debug mode
     app.run(debug=True)
