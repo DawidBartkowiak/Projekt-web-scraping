@@ -1,6 +1,6 @@
 /* style.css */
 
-/* Styl dla całego ciała strony */
+/* Style for the entire body of the page */
 body {
     font-family: Arial, sans-serif;
     background-color: #4b7eb2;
@@ -8,7 +8,7 @@ body {
     padding: 0;
 }
 
-/* Styl dla kontenera */
+/* Style for the container */
 .container {
     max-width: 900px;
     margin: 50px auto;
@@ -18,7 +18,7 @@ body {
     box-shadow: 0 4px 8px rgba(113, 35, 35, 0.1);
 }
 
-/* Styl dla nagłówka */
+/* Style for the header */
 h1 {
     font-size: 2.5rem;
     color: #040303;
@@ -26,12 +26,12 @@ h1 {
     margin-bottom: 20px;
 }
 
-/* Styl dla formularza */
+/* Style for the form */
 .form-group {
     margin-bottom: 20px;
 }
 
-/* Styl dla etykiety formularza */
+/* Style for the form label */
 label {
     font-weight: bold;
     color: #492d2d;
@@ -39,7 +39,7 @@ label {
     margin-bottom: 8px;
 }
 
-/* Styl dla pola tekstowego formularza */
+/* Style for the form text input */
 input[type="text"].form-control {
     width: 100%;
     padding: 10px;
@@ -48,7 +48,7 @@ input[type="text"].form-control {
     font-size: 1rem;
 }
 
-/* Styl dla przycisku formularza */
+/* Style for the form button */
 button.btn.btn-primary {
     background-color: #007bff;
     color: #fff;
@@ -63,7 +63,7 @@ button.btn.btn-primary:hover {
     background-color: #0056b3;
 }
 
-/* Styl dla tabeli */
+/* Style for the table */
 .table-responsive {
     overflow-x: auto;
     margin-top: 20px;
@@ -94,7 +94,7 @@ tr:hover {
     background-color: #e6f7ff;
 }
 
-/* Stylizacja responsywna */
+/* Responsive styling */
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;

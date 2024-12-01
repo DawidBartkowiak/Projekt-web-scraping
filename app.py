@@ -28,9 +28,13 @@ def format_table_data(df):
 
 @app.route("/")
 def index():
+    # Get the filter keyword from the request arguments
     filter_keyword = request.args.get("filter", "")
+
+    # Retrieve data from the SQLite database
     df = get_data_from_sqlite()
 
+    # Filter the DataFrame if a filter keyword is provided
     if filter_keyword:
         df = df[
             df.apply(
@@ -41,7 +45,10 @@ def index():
             )
         ]
 
+    # Format the DataFrame for HTML table rendering
     df2 = format_table_data(df)
+
+    # Render the index.html template with the table data
     return render_template(
         "index.html",
         tables=df2.to_html(classes="data", header="true", index=False, escape=False),
