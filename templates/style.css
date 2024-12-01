@@ -1,0 +1,35 @@
+.data {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+.data th, .data td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+.data th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center; /* Center align column names */
+}
+.data tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+.data tr:hover {
+    background-color: #ddd;
+}
+.data a.btn-link {
+    color: #4CAF50;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #4CAF50;
+    border-radius: 4px;
+    display: inline-block;
+}
+.data a.btn-link:hover {
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+}

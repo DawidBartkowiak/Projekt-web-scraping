@@ -4,22 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Offers</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .data {
-            width: 100%;
-            margin: 20px 0;
-        }
-        .data th, .data td {
-            padding: 10px;
-            text-align: left;
-            white-space: pre-wrap; /* This will handle the newlines properly */
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <h1 class="mt-5">Job Offers</h1>
+        <form method="GET" action="/">
+            <div class="form-group">
+                <label for="filter">Filter by keyword:</label>
+                <input type="text" class="form-control" id="filter" name="filter" placeholder="Enter keyword">
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
         <div class="table-responsive">
             {{ tables|safe }}
         </div>

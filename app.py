@@ -1,6 +1,6 @@
 import sqlite3
 import pandas as pd
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -20,17 +20,28 @@ def format_table_data(df):
     # Replaces newline characters with <br> tags in all string cells
     df = df.applymap(lambda x: x.replace("\n", "<br>") if isinstance(x, str) else x)
     # Converts the 'link' column to clickable HTML links
-    df["link"] = df["link"].apply(lambda x: f'<a href="{x}" target="_blank">{x}</a>')
+    df["link"] = df["link"].apply(
+        lambda x: f'<a href="{x}" target="_blank" class="btn btn-link">Link</a>'
+    )
     return df
 
 
 @app.route("/")
 def index():
-    # Retrieves data from the SQLite database
+    filter_keyword = request.args.get("filter", "")
     df = get_data_from_sqlite()
-    # Formats the DataFrame for HTML display
+
+    if filter_keyword:
+        df = df[
+            df.apply(
+                lambda row: row.astype(str)
+                .str.contains(filter_keyword, case=False)
+                .any(),
+                axis=1,
+            )
+        ]
+
     df2 = format_table_data(df)
-    # Renders the 'index.html' template with the formatted table
     return render_template(
         "index.html",
         tables=df2.to_html(classes="data", header="true", index=False, escape=False),

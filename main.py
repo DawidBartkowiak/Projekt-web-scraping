@@ -50,7 +50,7 @@ def save_to_sqlite(df, db_name="job_offers.db"):
     for _, row in df.iterrows():
         cursor.execute(
             """
-            INSERT OR IGNORE INTO job_offers (id,title, location, salary, link)
+            INSERT OR IGNORE INTO job_offers (Id,Title, Location, Salary, Link)
             VALUES (?, ?, ?, ?, ?)
         """,
             (row["id"], row["Title"], row["Location"], row["Salary"], row["Link"]),
