@@ -6,6 +6,7 @@ Projekt służy do ekstrakcji ofert pracy z różnych stron internetowych i zapi
 
 ## Struktura projektu
 
+```
 .
 ├── .gitignore
 ├── app.py
@@ -16,11 +17,14 @@ Projekt służy do ekstrakcji ofert pracy z różnych stron internetowych i zapi
 ├── sites/
 │   ├── infopraca.py
 │   ├── nofluffjobs.py
-│   ├── pracujpl.py
+│   └── pracujpl.py
+├── static/
+│   └── style.css
 ├── templates/
 │   └── index.html
 ├── url_helper.py
 └── urls.py
+```
 
 ## Wymagania
 
