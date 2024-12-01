@@ -55,7 +55,7 @@ Projekt służy do ekstrakcji ofert pracy z różnych stron internetowych i zapi
 - `urls.py`: Plik zawierający listę URL do ekstrakcji ofert pracy.
 - `sites/`: Katalog zawierający skrypty do ekstrakcji ofert pracy z poszczególnych stron.
 - `templates/`: Katalog zawierający szablony HTML dla aplikacji Flask.
-
+- `static/`: Katalog zawierający plik statyczny, taki jak arkusz stylów CSS.
 ## Autor
 
 Dawid Bartkowiak
